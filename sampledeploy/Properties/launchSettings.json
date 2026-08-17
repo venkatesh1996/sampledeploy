@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "sampledeploy": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
