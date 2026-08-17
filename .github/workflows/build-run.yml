@@ -12,14 +12,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v2
-      with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
-
     - name: Build Docker image
-      run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/sampledeploy:latest -f ./sampledeploy/Dockerfile .
+      run: docker build -t sampledeploy:latest -f ./sampledeploy/Dockerfile .
 
-    - name: Push Docker image
-      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/sampledeploy:latest
+    - name: Run container (deployment simulation)
+      run: docker run -d --name sampledeploy -p 8080:80 sampledeploy:latest
+
+    - name: Verify container is running
+      run: docker ps -a
+
