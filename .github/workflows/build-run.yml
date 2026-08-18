@@ -3,6 +3,7 @@ name: Build and Deploy Docker Image
 on:
   push:
     branches: [ "main" ]
+  workflow_dispatch:   # 👈 Manual trigger added
 
 jobs:
   build-and-deploy:
@@ -20,4 +21,5 @@ jobs:
 
     - name: Verify container is running
       run: docker ps -a
+
 
